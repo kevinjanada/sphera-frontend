@@ -1,4 +1,5 @@
 const ROLE = 'role';
+const TOKEN = 'token';
 
 const tokenService = {
   setRole: () => {
@@ -6,6 +7,12 @@ const tokenService = {
   },
   getRole: () => {
     window.localStorage.getItem(ROLE)
+  },
+  setToken: (token) => {
+    window.localStorage.setItem(TOKEN, token)
+  },
+  getToken: () => {
+    window.localStorage.getItem(TOKEN)
   }
 }
 
