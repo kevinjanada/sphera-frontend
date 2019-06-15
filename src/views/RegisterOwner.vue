@@ -130,12 +130,18 @@ export default {
   methods: {
     async validateBeforeSubmit() {
       const { name, username, email, password, address, phone} = this.model;
-      const res = await this.$axios.post('/registerPlayer', {
+      const res = await this.$axios.post('/registerOwner', {
         name, username, email, password, address, phone
       });
-      const { token } = res.data;
-      tokenService.setToken(token);
-      this.$router.push({ name: 'dashboard' });
+      
+      if (res.data.success) {
+        const { token, role, playerId, ownerId } = res.data;
+        tokenService.setRole(role);
+        if (playerId) tokenService.setUserId(playerId);
+        if (ownerId) tokenService.setUserId(ownerId);
+        tokenService.setToken(token);
+        this.$router.push({ name: 'dashboard-owner' });
+      }
     }
   }
 }

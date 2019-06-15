@@ -12,19 +12,6 @@
         </v-card-text>
       </v-card>
     </v-flex>
-
-    <v-flex md8 xs12>
-      <v-card>
-        <v-card-title>
-          <h2>Upcoming Games</h2>
-        </v-card-title>
-        <v-card-text>
-          <v-layout v-if="bookings.length === 0" justify-center>
-            <p>You currently have no upcoming games</p>
-          </v-layout>
-        </v-card-text>
-      </v-card>
-    </v-flex>
   </v-layout>
 </template>
 
@@ -32,8 +19,6 @@
 export default {
   data: () => ({
     bookings: [],
-    upcomingGames: []
-  }),
-  
+  })
 }
 </script>

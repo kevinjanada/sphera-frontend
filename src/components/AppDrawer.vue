@@ -75,6 +75,7 @@
   // import tokenServices from '@/common/tokenServices'
   import { mapMutations } from 'vuex';
   import * as mutationTypes from '@/store/types/mutationTypes';
+import tokenService from '../common/tokenService';
 
   export default {
     components: {
@@ -111,7 +112,14 @@
     mounted() {
       // const role = tokenServices.getRole();
       // FIXME: role masi di hardcode
-      const role = 'user'
+      let role = localStorage.getItem('role');
+      console.log(role);
+      if (role == '1') {
+        role = 'owner'
+      }
+      if (role == '2') {
+        role = 'user'
+      }
       this.setDrawerMenu(role);
     },
     methods: {

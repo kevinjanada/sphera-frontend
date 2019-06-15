@@ -133,8 +133,12 @@ export default {
       const res = await this.$axios.post('/registerPlayer', {
         name, username, email, password, address, phone
       });
+      console.log(res);
       if (res.data.success) {
-        const { token } = res.data;
+        const { token, role, playerId, ownerId } = res.data;
+        tokenService.setRole(role);
+        if (playerId) tokenService.setUserId(playerId);
+        if (ownerId) tokenService.setUserId(ownerId);
         tokenService.setToken(token);
         this.$router.push({ name: 'dashboard' });
       }

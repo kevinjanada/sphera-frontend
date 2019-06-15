@@ -23,6 +23,7 @@
   import AppDrawer from '@/components/AppDrawer'
   import AppToolbar from '@/components/AppToolbar'
   import PageHeader from '@/components/PageHeader'
+  import tokenService from '@/common/tokenService'
 
   export default {
     components: {
@@ -31,6 +32,18 @@
       PageHeader
     },
     async mounted() {
+      const roleId = tokenService.getRole();
+      if (!roleId) {
+        const res = await this.$axios.get('/getUserId');
+        const { role, playerId, ownerId } = res.data.data;
+        if (playerId) {
+          tokenService.setUserId(playerId);
+        }
+        if (ownerId) {
+          tokenService.setUserId(ownerId);
+        }
+        tokenService.setRole(role);
+      }
     },
     methods: {
     }

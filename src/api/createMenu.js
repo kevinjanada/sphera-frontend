@@ -30,7 +30,7 @@ function createMenu (role) {
         {
           title: 'Dashboard',
           icon: '',
-          routeName: 'dashboard',
+          routeName: 'dashboard-owner',
         },
         {
           title: 'Profile',
@@ -38,15 +38,10 @@ function createMenu (role) {
           routeName: 'profile'
         },
         {
-          title: 'Book',
+          title: 'Venues',
           icon: '',
-          routeName: 'book'
+          routeName: 'venues'
         },
-        {
-          title: 'Search',
-          icon: '',
-          routeName: 'search'
-        }
       ]
       break;
   }

@@ -13,6 +13,17 @@ const routes = [
     }
   },
   {
+    path: '/dashboard-owner',
+    name: 'dashboard-owner',
+    component: () => import(/* webpackChunkName: "login" */ '@/views/DashboardOwner.vue'),
+    // beforeEnter: checkAuth,
+    meta: {
+      breadcrumbs: [
+        { title: 'Dashboard'}
+      ]
+    }
+  },
+  {
     path: '/profile',
     name: 'profile',
     component: () => import(/* webpackChunkName: "login" */ '@/views/Profile.vue'),
@@ -56,6 +67,17 @@ const routes = [
     }
   },
   {
+    path: '/room-details',
+    name: 'room-details',
+    component: () => import(/* webpackChunkName: "login" */ '@/views/RoomDetails.vue'),
+    // beforeEnter: checkAuth,
+    meta: {
+      breadcrumbs: [
+        { title: 'Room Details' }
+      ]
+    }
+  },
+  {
     path: '/login',
     name: 'login',
     meta: {
@@ -92,6 +114,17 @@ const routes = [
     beforeEnter: isLoggedIn
   },
   {
+    path: '/venues',
+    name: 'venues',
+    component: () => import(/* webpackChunkName: "login" */ '@/views/Venues.vue'),
+    // beforeEnter: checkAuth,
+    meta: {
+      breadcrumbs: [
+        { title: 'Venues' }
+      ]
+    }
+  },
+  {
     path: '/InsertVenue',
     name: 'InsertVenue',
     component: () => import(/* webpackChunkName: "login" */ '@/views/InsertVenue.vue'),
@@ -106,6 +139,17 @@ const routes = [
     path: '/InsertLapangan',
     name: 'InsertLapangan',
     component: () => import(/* webpackChunkName: "login" */ '@/views/InsertLapangan.vue'),
+    // beforeEnter: checkAuth,
+    meta: {
+      breadcrumbs: [
+        { title: 'Insert Lapangan' }
+      ]
+    }
+  },
+  {
+    path: '/edit-venue',
+    name: 'edit-venue',
+    component: () => import(/* webpackChunkName: "login" */ '@/views/EditVenue.vue'),
     // beforeEnter: checkAuth,
     meta: {
       breadcrumbs: [
