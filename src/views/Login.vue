@@ -96,7 +96,7 @@ export default {
       }
     },
     forgetPassword () {
-
+      
     },
     registerUser () {
       this.$router.push({ name: 'register-user' })
