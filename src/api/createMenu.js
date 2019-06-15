@@ -14,12 +14,12 @@ function createMenu (role) {
           routeName: 'profile'
         },
         {
-          title: 'Book',
+          title: 'Book Venue',
           icon: '',
           routeName: 'book'
         },
         {
-          title: 'Search',
+          title: 'Search Games',
           icon: '',
           routeName: 'search'
         }
