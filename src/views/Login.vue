@@ -13,14 +13,14 @@
       <v-card-text>
         <v-form @keyup.enter.native="validateBeforeSubmit">
           <v-text-field
-            label="Email"
-            prepend-icon="email"
+            label="Username"
+            prepend-icon="perm_identity"
             color="#0280e0"
-            autocomplete="current-email"
-            data-vv-name="Email"
-            v-validate="'required|email'"
-            :error-messages="errors.collect('Email')"
-            type="email"
+            autocomplete=""
+            data-vv-name="Username"
+            v-validate="'required'"
+            :error-messages="errors.collect('Username')"
+            type="text"
             v-model="model.username"
           ></v-text-field>
           <v-text-field
@@ -52,15 +52,23 @@
         <v-flex>
           <p>Don't have an account?</p>
         </v-flex>
-        <v-btn flat id="btn-signup" @click="signUp">
-          Sign Up
-        </v-btn>
+        <v-flex>
+          <v-layout justify-space-between>
+            <v-btn flat id="btn-signup" @click="registerUser">
+              Sign Up as User
+            </v-btn>
+            <v-btn flat id="btn-signup" @click="registerOwner">
+              Sign Up as Owner
+            </v-btn>
+          </v-layout>
+        </v-flex>
       </v-layout>
     </v-card>
   </v-layout>
 </template>
 
 <script>
+import tokenService from '../common/tokenService'
 
 export default {
   data: () => ({
@@ -74,6 +82,28 @@ export default {
       password: '',
     },
     tokenRequest: false,
-  })
+  }),
+  methods: {
+    async validateBeforeSubmit () {
+      const { username, password } = this.model;
+      const res = await this.$axios.post('/login', {
+        username, password
+      });
+      if (res.data.success) {
+        const { token } = res.data;
+        tokenService.setToken(token);
+        this.$router.push({ name: 'dashboard' });
+      }
+    },
+    forgetPassword () {
+
+    },
+    registerUser () {
+      this.$router.push({ name: 'register-user' })
+    },
+    registerOwner () {
+      this.$router.push({ name: 'register-owner' })
+    }
+  }
 }
 </script>

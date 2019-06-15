@@ -133,9 +133,11 @@ export default {
       const res = await this.$axios.post('/registerPlayer', {
         name, username, email, password, address, phone
       });
-      const { token } = res.data;
-      tokenService.setToken(token);
-      this.$router.push({ name: 'dashboard' });
+      if (res.data.success) {
+        const { token } = res.data;
+        tokenService.setToken(token);
+        this.$router.push({ name: 'dashboard' });
+      }
     }
   }
 }

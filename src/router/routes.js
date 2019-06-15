@@ -65,12 +65,21 @@ const routes = [
     beforeEnter: isLoggedIn
   },
   {
-    path: '/register',
-    name: 'register',
+    path: '/register-user',
+    name: 'register-user',
     meta: {
       public: true
     },
-    component: () => import(/* webpackChunkName: "login" */ '@/views/Register.vue'),
+    component: () => import(/* webpackChunkName: "login" */ '@/views/RegisterUser.vue'),
+    beforeEnter: isLoggedIn
+  },
+  {
+    path: '/register-owner',
+    name: 'register-owner',
+    meta: {
+      public: true
+    },
+    component: () => import(/* webpackChunkName: "login" */ '@/views/RegisterOwner.vue'),
     beforeEnter: isLoggedIn
   },
   {
