@@ -11,10 +11,13 @@
       <v-layout row wrap>
         <template v-for="v in venues">
           <v-flex md4 sm6 xs12 :key="v.name">
-            <VenueCard
-              :img="v.img"
-              :name="v.name"
-            ></VenueCard>
+            <router-link :to="{ name: 'venue-details', params: { venueId: v.id } }">
+              <VenueCard
+                :img="v.img"
+                :name="v.name"
+                :address="v.address"
+              ></VenueCard>
+            </router-link>
           </v-flex>
         </template>
       </v-layout>
@@ -24,6 +27,9 @@
 
 <script>
 import VenueCard from '@/components/VenueCard';
+import venues from '@/api/dummy-data/venues'
+
+
 export default {
   components: {
     VenueCard,
@@ -36,20 +42,7 @@ export default {
   },
   methods: {
     addDummyVenues () {
-      this.venues = [
-        {
-          img: '@/assets/',
-          name: 'Venue A'
-        },
-        {
-          img: '@/assets/',
-          name: 'Venue B'
-        },
-        {
-          img: '@/assets/',
-          name: 'Venue C'
-        }
-      ]
+      this.venues = venues;
     }
   }
 }

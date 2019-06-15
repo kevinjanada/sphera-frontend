@@ -35,6 +35,16 @@ const routes = [
     }
   },
   {
+    path: '/venue-details',
+    name: 'venue-details',
+    component: () => import(/* webpackChunkName: "login" */ '@/views/VenueDetails.vue'),
+    meta: {
+      breadcrumbs: [
+        { title: 'Venue Details' },
+      ]
+    }
+  },
+  {
     path: '/search',
     name: 'search',
     component: () => import(/* webpackChunkName: "login" */ '@/views/SearchGames.vue'),

@@ -2,7 +2,7 @@
   <v-layout justify-center fill-height align-center >
     <v-card class="px-4 py-4 elevation-5" width="40vw">
       <v-layout class="pt-1 display-1 font-weight-black" justify-center id="card-header">
-        REGISTER PLAYER
+        REGISTER OWNER
       </v-layout>
       <v-alert
         type="error"
@@ -11,7 +11,7 @@
         v-model="alert.show"
       >{{ alert.message }}</v-alert>
       <v-card-text>
-          <v-layout>
+          <v-layout row wrap>
             <v-flex xs6>
                 <v-img :src="require('@/assets/spheraLogo.png')" class="mr-5"/>
             </v-flex>
