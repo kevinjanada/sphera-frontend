@@ -37,7 +37,9 @@
             <v-card-text>
               <h4>Schedules</h4>
               <v-layout style="overflow-x: auto;">
-                
+                <v-chip v-for="s in pitch.schedule" label outline color="red" :key="s.date">
+                  {{ s.date }}
+                </v-chip>
               </v-layout>
             </v-card-text>
           </v-card>
@@ -65,29 +67,72 @@ export default {
           ]
         }
       ]
-    }
+    },
+    loadingProcessSchedule: true
   }),
+  watch: {
+    loadingProcessSchedule (status) {
+      this.$forceUpdate();
+    }
+  },
   mounted() {
-    this.getDummyVenue();
+    this.getDummyVenue()
+      .then(venueDetails => {
+        this.venueDetails = venueDetails;
+        this.processSchedule();
+        // console.log(this.venueDetails);
+      })
   },
   methods: {
     getDummyVenue () {
-      const venueId = this.$route.params.venueId;
-      this.venueDetails = venues.filter(v => v.id === venueId)[0];
+      return new Promise((resolve) => {
+        const venueId = this.$route.params.venueId;
+        resolve(venues.filter(v => v.id === venueId)[0]);
+      })
     },
     processSchedule () {
-      let schedule = []
-      let currentScheduleObj = {
-        date: ''
-      }
+      this.loadingProcessSchedule = true;
       this.venueDetails.pitches.forEach(p => {
-        for (let i = 0; i < p.schedule; i++) {
-          if(currentScheduleObj.date != p.schedule[i].date) {
-            currentScheduleObj.date = p.schedule[i].date;
-            
+        let schedule = []
+        let count = 0;
+        console.log(p)
+        for (let i = 0; i < p.schedule.length; i++) {
+          console.log(p.schedule[i]);
+          if (schedule.length == 0) {
+            schedule.push({
+              date: '',
+              times: []
+            });
+            schedule[count].date = p.schedule[i].date
+            schedule[count].times.push({
+              startTime: p.schedule[i].startTime,
+              endTime: p.schedule[i].endTime
+            })
+          } else if (schedule[count].date != p.schedule[i].date) {
+            console.log(p.schedule[i].date)
+            schedule.push({
+              date: '',
+              times: []
+            });
+            count++
+            schedule[count].date = p.schedule[i].date
+            schedule[count].times.push({
+              startTime: p.schedule[i].startTime,
+              endTime: p.schedule[i].endTime
+            })
+          } else {
+            console.log(p.schedule[i].date)
+            schedule[count].times.push({
+              startTime: p.schedule[i].startTime,
+              endTime: p.schedule[i].endTime
+            })
           }
         }
+        p.schedule = schedule
+        schedule = []
+        count = 0
       })
+      this.loadingProcessSchedule = false;
     }
   }
 }

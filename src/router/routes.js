@@ -83,6 +83,16 @@ const routes = [
     beforeEnter: isLoggedIn
   },
   {
+    path: '/',
+    meta: {
+      public: true,
+    },
+    beforeEnter: checkAuth,
+    redirect: {
+      path: '/dashboard'
+    }
+  },
+  {
     path: '*',
     meta: {
       public: true,
