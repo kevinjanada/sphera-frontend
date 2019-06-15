@@ -92,6 +92,28 @@ const routes = [
     beforeEnter: isLoggedIn
   },
   {
+    path: '/InsertVenue',
+    name: 'InsertVenue',
+    component: () => import(/* webpackChunkName: "login" */ '@/views/InsertVenue.vue'),
+    // beforeEnter: checkAuth,
+    meta: {
+      breadcrumbs: [
+        { title: 'Insert Venue' }
+      ]
+    }
+  },
+  {
+    path: '/InsertLapangan',
+    name: 'InsertLapangan',
+    component: () => import(/* webpackChunkName: "login" */ '@/views/InsertLapangan.vue'),
+    // beforeEnter: checkAuth,
+    meta: {
+      breadcrumbs: [
+        { title: 'Insert Lapangan' }
+      ]
+    }
+  },
+  {
     path: '/',
     meta: {
       public: true,
