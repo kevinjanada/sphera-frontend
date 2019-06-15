@@ -39,10 +39,15 @@ export default {
   }),
   mounted () {
     this.addDummyVenues()
+    this.getVenues();
   },
   methods: {
     addDummyVenues () {
       this.venues = venues;
+    },
+    async getVenues () {
+      const res = await this.$axios.get('/getLapangan');
+      console.log(res);
     }
   }
 }
