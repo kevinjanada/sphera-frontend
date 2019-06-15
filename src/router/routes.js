@@ -114,6 +114,15 @@ const routes = [
     }
   },
   {
+    path: '/InsertSchedule',
+    name: 'InsertSchedule',
+    meta: {
+      public: true
+    },
+    component: () => import(/* webpackChunkName: "login" */ '@/views/InsertSchedule.vue'),
+    beforeEnter: isLoggedIn
+  },
+  {
     path: '/',
     meta: {
       public: true,
