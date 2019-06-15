@@ -1,10 +1,29 @@
-import tokenServices from '@/common/tokenService'
+import tokenService from '@/common/tokenService'
 
 const routes = [
   {
     path: '/',
     name: 'dashboard',
-    component: () => import(/* webpackChunkName: "login" */ '@/views/Dashboard.vue')
+    component: () => import(/* webpackChunkName: "login" */ '@/views/Dashboard.vue'),
+    beforeEnter: checkAuth,
+  },
+  {
+    path: '/',
+    name: 'profile',
+    component: () => import(/* webpackChunkName: "login" */ '@/views/Profile.vue'),
+    beforeEnter: checkAuth,
+  },
+  {
+    path: '/',
+    name: 'book',
+    component: () => import(/* webpackChunkName: "login" */ '@/views/Book.vue'),
+    beforeEnter: checkAuth,
+  },
+  {
+    path: '/',
+    name: 'search',
+    component: () => import(/* webpackChunkName: "login" */ '@/views/Search.vue'),
+    beforeEnter: checkAuth,
   },
   {
     path: '/login',
@@ -13,6 +32,15 @@ const routes = [
       public: true
     },
     component: () => import(/* webpackChunkName: "login" */ '@/views/Login.vue'),
+    beforeEnter: isLoggedIn
+  },
+  {
+    path: '/register',
+    name: 'register',
+    meta: {
+      public: true
+    },
+    component: () => import(/* webpackChunkName: "login" */ '@/views/Register.vue'),
     beforeEnter: isLoggedIn
   },
   {
@@ -62,14 +90,18 @@ const routes = [
   },
 ]
 
-// function checkAuth (to, from, next) {
-//   const role = tokenServices.getRole()
-//  next()
-// }
+function checkAuth (to, from, next) {
+  const role = tokenService.getRole()
+  if(role) {
+    next()
+  } else {
+    next('/login');
+  }
+}
 
 function isLoggedIn (to, from, next) {
-  const role = tokenServices.getRole()
-  if(role !== null && role !== 'false') {
+  const role = tokenService.getRole()
+  if(role) {
     next('/')
   } else {
     next()
