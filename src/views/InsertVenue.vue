@@ -1,8 +1,8 @@
 <template>
   <v-layout justify-center fill-height align-center>
-    <v-card class="px-4 py-4 elevation-5">
-      <v-layout class="pt-1" justify-center id="card-header">
-        <img src="">
+    <v-card class="px-4 py-4 elevation-5" width="40vw">
+       <v-layout class="pt-1 display-1 font-weight-black" justify-center id="card-header">
+           ADD NEW VENUE
       </v-layout>
       <v-alert
         type="error"
@@ -58,10 +58,10 @@
           ></v-text-field>
         </v-form>
         <v-layout justify-center row wrap class="py-3">
-          <v-btn
+          <v-btn round large
             id="btn-addVenue"
             class="elevation-5"
-            dark
+            color="primary"
             @click="validateBeforeSubmit"
             :loading="loading"
           >ADD VENUE</v-btn>
