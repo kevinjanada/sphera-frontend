@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Vue from 'vue';
 import tokenServices from '../common/tokenService';
-import config from '../../vue.config';
+import config from '../../config';
 
 const { BASE_URL } = config
 
