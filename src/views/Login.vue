@@ -90,9 +90,17 @@ export default {
         username, password
       });
       if (res.data.success) {
-        const { token } = res.data;
+        const { token, role, playerId, ownerId } = res.data;
+        tokenService.setRole(role);
         tokenService.setToken(token);
-        this.$router.push({ name: 'dashboard' });
+        if (playerId) { 
+          tokenService.setUserId(playerId)
+          this.$router.push({ name: 'dashboard' });
+        }
+        if (ownerId) { 
+          tokenService.setUserId(ownerId)
+          this.$router.push({ name: 'dashboard-owner' });
+        }
       }
     },
     forgetPassword () {

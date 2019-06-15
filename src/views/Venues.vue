@@ -1,17 +1,17 @@
 <template>
-  <v-layout row wrap justify-center>
-    <v-flex md8 xs12>
-      <v-text-field
-        prepend-icon="search"
-        label="Search Venue"
-      >
-      </v-text-field>
+  <v-layout row wrap>
+    <v-flex xs12>
+      <v-layout justify-start>
+        <v-btn @click="gotoAddVenue">
+          Add Venue
+        </v-btn>
+      </v-layout>
     </v-flex>
     <v-flex xs12>
       <v-layout row wrap>
         <template v-for="v in venues">
-          <v-flex md4 sm6 xs12 :key="v.name">
-            <router-link :to="{ name: 'venue-details', params: { venueId: v.id } }">
+          <v-flex md4 sm6 xs12 :key="v.id">
+            <router-link :to="{ name: 'edit-venue', params: { venueId: v.id } }">
               <VenueCard
                 :img="v.img"
                 :name="v.name"
@@ -27,27 +27,26 @@
 
 <script>
 import VenueCard from '@/components/VenueCard';
-import venues from '@/api/dummy-data/venues'
-
 
 export default {
   components: {
-    VenueCard,
+    VenueCard
   },
   data: () => ({
     venues: []
   }),
   mounted () {
-    this.addDummyVenues()
     this.getVenues();
   },
   methods: {
-    addDummyVenues () {
-      this.venues = venues;
+    gotoAddVenue () {
+      this.$router.push({ name: 'InsertVenue' })
     },
     async getVenues () {
-      const res = await this.$axios.get('/getAllVenue');
-      console.log(res);
+      const ownerId = localStorage.getItem('userId');
+      const res = await this.$axios.get('/getVenuesByOwnerId');
+
+      this.venues = res.data.data;
     }
   }
 }

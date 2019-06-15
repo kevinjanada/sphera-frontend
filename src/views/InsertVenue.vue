@@ -1,8 +1,8 @@
 <template>
   <v-layout justify-center fill-height align-center>
     <v-card class="px-4 py-4 elevation-5" width="40vw">
-       <v-layout class="pt-1 display-1 font-weight-black" justify-center id="card-header">
-           ADD NEW VENUE
+      <v-layout class="pt-1 display-1 font-weight-black" justify-center id="card-header">
+        ADD NEW VENUE
       </v-layout>
       <v-alert
         type="error"
@@ -12,17 +12,6 @@
       >{{ alert.message }}</v-alert>
       <v-card-text>
         <v-form @keyup.enter.native="validateBeforeSubmit">
-          <v-text-field
-            label="Owner Name"
-            prepend-icon="perm_identity"
-            color="#0280e0"
-            autocomplete=""
-            data-vv-name="OwnerName"
-            v-validate="'required'"
-            :error-messages="errors.collect('OwnerName')"
-            type="text"
-            v-model="model.OwnerName"
-          ></v-text-field>
           <v-text-field
             label="Venue Name"
             prepend-icon="perm_identity"
@@ -40,21 +29,10 @@
             color="#0280e0"
             autocomplete="VenueAddress"
             type="text"
-            data-vv-name="Password"
+            data-vv-name="VenueAddress"
             v-validate="'required|max:30'"
             :error-messages="errors.collect('VenueAddress')"
             v-model="model.VenueAddress"
-          ></v-text-field>
-          <v-text-field
-            label="Owner Password"
-            prepend-icon="lock"
-            color="#0280e0"
-            autocomplete="current-password"
-            type="password"
-            data-vv-name="Password"
-            v-validate="'required|min:6'"
-            :error-messages="errors.collect('Password')"
-            v-model="model.password"
           ></v-text-field>
         </v-form>
         <v-layout justify-center row wrap class="py-3">
@@ -82,13 +60,23 @@ export default {
       show: false,
     },
     model: {
-      username: '',
-      password: '',
+      VenueName: '',
+      VenueAddress: '',
     },
-    tokenRequest: false,
   }),
   methods: {
-    
+    async validateBeforeSubmit () {
+      // const ownerId = tokenService.getUserId();
+      const ownerId = localStorage.getItem('userId');
+      const res = await this.$axios.post('/inputVenue', {
+        ownerId,
+        name: this.model.VenueName,
+        address: this.model.VenueAddress
+      });
+      if (res.data.success) {
+        this.$router.push({ name: 'venues' })
+      }
+    }
   }
 }
 </script>
