@@ -83,6 +83,15 @@ const routes = [
     beforeEnter: isLoggedIn
   },
   {
+    path: '/RoomDetails',
+    name: 'RoomDetails',
+    meta: {
+      public: true
+    },
+    component: () => import(/* webpackChunkName: "login" */ '@/views/RoomDetails.vue'),
+    beforeEnter: isLoggedIn
+  },
+  {
     path: '/',
     meta: {
       public: true,
