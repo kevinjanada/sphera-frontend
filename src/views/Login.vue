@@ -36,18 +36,16 @@
           ></v-text-field>
         </v-form>
         <v-layout justify-center row wrap class="py-3">
-          <v-flex lg12 sm12 xs12>
-            <v-btn
-              id="btn-login"
-              class="elevation-5"
-              dark
-              @click="validateBeforeSubmit"
-              :loading="loading"
-            >Log In</v-btn>
-          </v-flex>
-          <v-layout justify-center>
-            <v-btn flat id="btn-forget-password" @click="forgetPassword">Forget Password</v-btn>
-          </v-layout>
+          <v-btn
+            id="btn-login"
+            class="elevation-5"
+            dark
+            @click="validateBeforeSubmit"
+            :loading="loading"
+          >Log In</v-btn>
+        </v-layout>
+        <v-layout justify-center>
+          <v-btn flat id="btn-forget-password" @click="forgetPassword">Forget Password</v-btn>
         </v-layout>
       </v-card-text>
       <v-layout id="card-footer" align-center column>

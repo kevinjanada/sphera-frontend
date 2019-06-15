@@ -2,28 +2,48 @@ import tokenService from '@/common/tokenService'
 
 const routes = [
   {
-    path: '/',
+    path: '/dashboard',
     name: 'dashboard',
     component: () => import(/* webpackChunkName: "login" */ '@/views/Dashboard.vue'),
-    beforeEnter: checkAuth,
+    // beforeEnter: checkAuth,
+    meta: {
+      breadcrumbs: [
+        { title: 'Dashboard'}
+      ]
+    }
   },
   {
-    path: '/',
+    path: '/profile',
     name: 'profile',
     component: () => import(/* webpackChunkName: "login" */ '@/views/Profile.vue'),
-    beforeEnter: checkAuth,
+    // beforeEnter: checkAuth,
+    meta: {
+      breadcrumbs: [
+        { title: 'Profile' }
+      ]
+    }
   },
   {
-    path: '/',
+    path: '/book',
     name: 'book',
-    component: () => import(/* webpackChunkName: "login" */ '@/views/Book.vue'),
-    beforeEnter: checkAuth,
+    component: () => import(/* webpackChunkName: "login" */ '@/views/BookVenue.vue'),
+    // beforeEnter: checkAuth,
+    meta: {
+      breadcrumbs: [
+        { title: 'Book Venue' }
+      ]
+    }
   },
   {
-    path: '/',
+    path: '/search',
     name: 'search',
-    component: () => import(/* webpackChunkName: "login" */ '@/views/Search.vue'),
-    beforeEnter: checkAuth,
+    component: () => import(/* webpackChunkName: "login" */ '@/views/SearchGames.vue'),
+    // beforeEnter: checkAuth,
+    meta: {
+      breadcrumbs: [
+        { title: 'Search Games' }
+      ]
+    }
   },
   {
     path: '/login',
@@ -102,7 +122,7 @@ function checkAuth (to, from, next) {
 function isLoggedIn (to, from, next) {
   const role = tokenService.getRole()
   if(role) {
-    next('/')
+    next('/dashboard')
   } else {
     next()
   }

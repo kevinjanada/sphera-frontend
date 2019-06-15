@@ -12,7 +12,7 @@
     <v-menu offset-y origin="center center" :nudge-bottom="10" transition="scale-transition">
       <v-btn large flat slot="activator">
         <v-avatar size="30px" color="white">
-          <img class="img-logo" alt="FUTSAL"/>
+          <img class="img-logo" :src="require('@/assets/user-not-found.png')" alt="FUTSAL"/>
         </v-avatar>
       </v-btn>
       <v-list class="pa-0">
