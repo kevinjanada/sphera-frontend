@@ -2,7 +2,7 @@
   <v-layout justify-center fill-height align-center >
     <v-card class="px-4 py-4 elevation-5" width="40vw">
       <v-layout class="pt-1 display-1 font-weight-black" justify-center id="card-header">
-        REGISTER PLAYER
+        REGISTER OWNER
       </v-layout>
       <v-alert
         type="error"

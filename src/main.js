@@ -5,6 +5,8 @@ import router from './router'
 import store from './store'
 import 'vuetify/dist/vuetify.min.css'
 
+console.log(process.env)
+
 Vue.config.productionTip = false
 
 new Vue({
