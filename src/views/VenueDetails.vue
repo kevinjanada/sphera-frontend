@@ -36,10 +36,9 @@
             <v-divider></v-divider>
             <v-card-text>
               <h4>Schedules</h4>
-              <v-expansion-panel>
-                <v-expansion-panel-content>
-                </v-expansion-panel-content>
-              </v-expansion-panel>
+              <v-layout style="overflow-x: auto;">
+                
+              </v-layout>
             </v-card-text>
           </v-card>
         </v-flex>
@@ -55,7 +54,17 @@ export default {
     venueDetails: {
       img: null,
       name: null,
-      pitches: []
+      pitches: [
+        {
+          id: null, 
+          img: null, 
+          name: null, 
+          address: null, 
+          schedule: [
+            { date: null, startTime: null, endTime: null }
+          ]
+        }
+      ]
     }
   }),
   mounted() {
@@ -65,6 +74,20 @@ export default {
     getDummyVenue () {
       const venueId = this.$route.params.venueId;
       this.venueDetails = venues.filter(v => v.id === venueId)[0];
+    },
+    processSchedule () {
+      let schedule = []
+      let currentScheduleObj = {
+        date: ''
+      }
+      this.venueDetails.pitches.forEach(p => {
+        for (let i = 0; i < p.schedule; i++) {
+          if(currentScheduleObj.date != p.schedule[i].date) {
+            currentScheduleObj.date = p.schedule[i].date;
+            
+          }
+        }
+      })
     }
   }
 }
