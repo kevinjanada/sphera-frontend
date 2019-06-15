@@ -11,7 +11,7 @@
         v-model="alert.show"
       >{{ alert.message }}</v-alert>
       <v-card-text>
-          <v-layout row wrap>
+          <v-layout>
             <v-flex xs6>
                 <v-img :src="require('@/assets/spheraLogo.png')" class="mr-5"/>
             </v-flex>
