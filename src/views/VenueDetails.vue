@@ -37,15 +37,73 @@
             <v-card-text>
               <h4>Schedules</h4>
               <v-layout style="overflow-x: auto;">
-                <v-chip v-for="s in pitch.schedule" label outline color="red" :key="s.date">
+                <v-chip v-for="s in pitch.schedule" label outline color="red" :key="s.date" @click="expandSchedule(s)">
                   {{ s.date }}
                 </v-chip>
+              </v-layout>
+              <v-layout v-if="expand">
+                <v-flex xs12>
+                  <template>
+                    <v-data-table
+                      :headers="headers"
+                      :items="activeSchedule.times"
+                      class="elevation-1"
+                    >
+                      <template v-slot:items="props">
+                        <td class="text-xs-right">{{ props.item.startTime }}</td>
+                        <td class="text-xs-right">{{ props.item.endTime }}</td>
+                        <td class="text-xs-right">
+                          <template v-if="props.item.status == 'booked'">
+                            {{ props.item.status }}
+                          </template>
+                          <template v-else>
+                            <v-btn @click="showBookDialog">
+                              Book
+                            </v-btn>
+                          </template>
+                        </td>
+                      </template>
+                    </v-data-table>
+                  </template>
+                </v-flex>
               </v-layout>
             </v-card-text>
           </v-card>
         </v-flex>
       </template>
     </v-layout>
+    <div>
+      <v-dialog
+      v-model="bookDialog"
+      width="500"
+    >
+      <v-card>
+        <v-card-title
+          class="headline grey lighten-2"
+          primary-title
+        >
+          Privacy Policy
+        </v-card-title>
+
+        <v-card-text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="primary"
+            flat
+            @click="dialog = false"
+          >
+            I accept
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    </div>
   </v-layout>
 </template>
 
@@ -68,7 +126,15 @@ export default {
         }
       ]
     },
-    loadingProcessSchedule: true
+    loadingProcessSchedule: true,
+    expand: false,
+    headers: [
+      { text: 'Start Time', value: 'startTime' },
+      { text: 'End Time', value: 'endTime' },
+      { text: 'Status', value: 'status' }
+    ],
+    activeSchedule: [],
+    bookDialog: false
   }),
   watch: {
     loadingProcessSchedule (status) {
@@ -90,6 +156,17 @@ export default {
         resolve(venues.filter(v => v.id === venueId)[0]);
       })
     },
+    expandSchedule (s) {
+      if (this.activeSchedule.date !== s.date) {
+        this.activeSchedule = s;
+        this.expand = true;
+      } else {
+        this.expand = !this.expand;
+      }
+    },
+    showBookDialog () {
+      this.bookDialog = true;
+    },
     processSchedule () {
       this.loadingProcessSchedule = true;
       this.venueDetails.pitches.forEach(p => {
@@ -101,30 +178,35 @@ export default {
           if (schedule.length == 0) {
             schedule.push({
               date: '',
-              times: []
+              times: [],
+              status: ''
             });
             schedule[count].date = p.schedule[i].date
             schedule[count].times.push({
               startTime: p.schedule[i].startTime,
-              endTime: p.schedule[i].endTime
+              endTime: p.schedule[i].endTime,
+              status: p.schedule[i].status
             })
           } else if (schedule[count].date != p.schedule[i].date) {
             console.log(p.schedule[i].date)
             schedule.push({
               date: '',
-              times: []
+              times: [],
+              status: ''
             });
             count++
             schedule[count].date = p.schedule[i].date
             schedule[count].times.push({
               startTime: p.schedule[i].startTime,
-              endTime: p.schedule[i].endTime
+              endTime: p.schedule[i].endTime,
+              status: p.schedule[i].status
             })
           } else {
             console.log(p.schedule[i].date)
             schedule[count].times.push({
               startTime: p.schedule[i].startTime,
-              endTime: p.schedule[i].endTime
+              endTime: p.schedule[i].endTime,
+              status: p.schedule[i].status
             })
           }
         }

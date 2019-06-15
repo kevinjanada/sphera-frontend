@@ -63,10 +63,8 @@ export default {
     }),
     ...mapGetters(['getRole']),
     async handleLogOut () {
-      const res = await this.logOut()
-      if (res) {
-        this.$router.push('/login')
-      }
+      localStorage.clear();
+      this.$router.push('/login')
     }
   }
 };

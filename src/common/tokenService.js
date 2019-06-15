@@ -1,18 +1,25 @@
 const ROLE = 'role';
 const TOKEN = 'token';
+const USER_ID = 'userId';
 
 const tokenService = {
-  setRole: () => {
-    window.localStorage.setItem(ROLE)
+  setRole: (role) => {
+    localStorage.setItem(ROLE, role)
   },
   getRole: () => {
-    window.localStorage.getItem(ROLE)
+    localStorage.getItem(ROLE)
+  },
+  setUserId: (userId) => {
+    localStorage.setItem(USER_ID, userId)
+  },
+  getUserId: () => {
+    localStorage.getItem(USER_ID)
   },
   setToken: (token) => {
-    window.localStorage.setItem(TOKEN, token)
+    localStorage.setItem(TOKEN, token)
   },
   getToken: () => {
-    window.localStorage.getItem(TOKEN)
+    localStorage.getItem(TOKEN)
   }
 }
 

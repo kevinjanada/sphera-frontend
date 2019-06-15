@@ -3,20 +3,24 @@
     <v-flex md8 xs12>
       <v-text-field
         prepend-icon="search"
-        label="Search Venue"
+        label="Search Games"
       >
       </v-text-field>
     </v-flex>
     <v-flex xs12>
       <v-layout row wrap>
-        <template v-for="v in venues">
-          <v-flex md4 sm6 xs12 :key="v.name">
-            <router-link :to="{ name: 'RoomDetails', params: { venueId: v.id } }">
-              <VenueCard
-                :img="v.img"
-                :name="v.name"
-                :address="v.address"
-              ></VenueCard>
+        <template v-for="r in rooms">
+          <v-flex md4 sm6 xs12 :key="r.id">
+            <router-link :to="{ name: 'room-details', params: { roomId: r.id } }">
+              <RoomCard
+                :img="r.img"
+                :name="r.name"
+                :capacity="r.roomCapacity"
+                :currentCapacity="r.roomCurrentCapacity"
+                :startTime="r.startTime"
+                :endTime="r.endTime"
+                :date="r.date"
+              ></RoomCard>
             </router-link>
           </v-flex>
         </template>
@@ -26,23 +30,23 @@
 </template>
 
 <script>
-import VenueCard from '@/components/VenueCard';
-import venues from '@/api/dummy-data/venues'
+import RoomCard from '@/components/RoomCard';
+import rooms from '@/api/dummy-data/rooms'
 
 
 export default {
   components: {
-    VenueCard,
+    RoomCard
   },
   data: () => ({
-    venues: []
+    rooms: []
   }),
   mounted () {
-    this.addDummyVenues()
+    this.addDummyRooms()
   },
   methods: {
-    addDummyVenues () {
-      this.venues = venues;
+    addDummyRooms () {
+      this.rooms = rooms;
     }
   }
 }
