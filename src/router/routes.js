@@ -56,6 +56,17 @@ const routes = [
     }
   },
   {
+    path: '/room-details',
+    name: 'room-details',
+    component: () => import(/* webpackChunkName: "login" */ '@/views/RoomDetails.vue'),
+    // beforeEnter: checkAuth,
+    meta: {
+      breadcrumbs: [
+        { title: 'Room Details' }
+      ]
+    }
+  },
+  {
     path: '/login',
     name: 'login',
     meta: {
