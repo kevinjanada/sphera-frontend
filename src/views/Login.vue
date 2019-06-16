@@ -11,6 +11,9 @@
         v-model="alert.show"
       >{{ alert.message }}</v-alert>
       <v-card-text>
+        <v-layout justify-center>
+          <h1>SPHERA</h1>
+        </v-layout>
         <v-form @keyup.enter.native="validateBeforeSubmit">
           <v-text-field
             label="Username"
@@ -43,9 +46,6 @@
             @click="validateBeforeSubmit"
             :loading="loading"
           >Log In</v-btn>
-        </v-layout>
-        <v-layout justify-center>
-          <v-btn flat id="btn-forget-password" @click="forgetPassword">Forget Password</v-btn>
         </v-layout>
       </v-card-text>
       <v-layout id="card-footer" align-center column>

@@ -173,7 +173,7 @@ const routes = [
     },
     beforeEnter: checkAuth,
     redirect: {
-      path: '/dashboard'
+      path: '/login'
     }
   },
   {

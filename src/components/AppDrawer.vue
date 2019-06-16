@@ -10,7 +10,7 @@
     >
     <v-toolbar color="primary" dark>
       <!-- <img src="@/assets/jcm-logo-white.png" class="img-fluid" alt="Logo JCM"> -->
-      <h1 class="logo">FUTSAL</h1>
+      <h1 class="logo">SPHERA</h1>
     </v-toolbar>
     <vue-perfect-scrollbar class="drawer-menu--scroll" :settings="scrollSettings">
       <v-list dense class="pb-4">

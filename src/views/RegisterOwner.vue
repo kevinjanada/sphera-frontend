@@ -12,10 +12,10 @@
       >{{ alert.message }}</v-alert>
       <v-card-text>
           <v-layout row wrap>
-            <v-flex xs6>
+            <!-- <v-flex xs6>
                 <v-img :src="require('@/assets/spheraLogo.png')" class="mr-5"/>
-            </v-flex>
-            <v-flex xs6>
+            </v-flex> -->
+            <v-flex>
                 <v-form @keyup.enter.native="validateBeforeSubmit">
                     <v-text-field
                         label="Full Name"
