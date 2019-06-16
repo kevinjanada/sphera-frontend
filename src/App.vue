@@ -12,9 +12,10 @@
   </v-app>
   <v-app v-else>
     <v-content>
-      <v-container fill-height>
+      <v-container fill-height v-if="!$route.meta.landingPage">
         <router-view></router-view>
       </v-container>
+      <router-view v-else></router-view>
     </v-content>
   </v-app>
 </template>

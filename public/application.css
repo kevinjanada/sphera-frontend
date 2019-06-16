@@ -547,11 +547,11 @@ input:-webkit-autofill {
 .slide-img{
     width: 100vw;
     height: 100vh;
-    background-image: image-url("web_assets/dashboard/home_slider_1.jpg");
+    background-image: url("rooms.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    opacity: .225;
+    opacity: .7;
     margin-bottom: 40px;
 }
 .lapor-how-to-card{
@@ -681,10 +681,10 @@ input:-webkit-autofill {
 }
 .lapor-landing-page-signup-button:hover{
     background: white;
-    color: #dd5858;
+    color: black;
 }
 .lapor-landing-page-background{
-    background: #af4646; 
+    background: #282828;
     position: relative; 
     
     width: 100vw; 
@@ -692,7 +692,6 @@ input:-webkit-autofill {
     overflow: hidden;
 }
 .lapor-landing-page-background-desc{
-    display: none;
     position: absolute; 
     z-index: 1; 
 }
@@ -786,6 +785,8 @@ input:-webkit-autofill {
 }
 .lapor-landing-page-footer-desc{
     display: flex;
+    width: 100vw;
+    justify-content: center;
     align-items: center;
 }
 

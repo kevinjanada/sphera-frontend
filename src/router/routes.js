@@ -168,13 +168,11 @@ const routes = [
   },
   {
     path: '/',
+    component: () => import(/* webpackChunkName: "login" */ '@/views/LandingPage.vue'),
     meta: {
       public: true,
+      landingPage: true,
     },
-    beforeEnter: checkAuth,
-    redirect: {
-      path: '/login'
-    }
   },
   {
     path: '*',
