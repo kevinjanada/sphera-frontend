@@ -162,7 +162,7 @@ const routes = [
     // beforeEnter: checkAuth,
     meta: {
       breadcrumbs: [
-        { title: 'Insert Lapangan' }
+        { title: 'Edit Venue' }
       ]
     }
   },
