@@ -7,7 +7,7 @@
     <v-card-title primary-title>
       <div>
         <h3 class="headline mb-0">{{ name }}</h3>
-        <h3>{{ currentCapacity }} / {{ capacity }}</h3>
+        <h3>{{ currentCapacity }} / {{ capacity }} Players</h3>
       </div>
     </v-card-title>
     <v-divider></v-divider>

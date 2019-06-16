@@ -162,19 +162,17 @@ const routes = [
     // beforeEnter: checkAuth,
     meta: {
       breadcrumbs: [
-        { title: 'Insert Lapangan' }
+        { title: 'Edit Venue' }
       ]
     }
   },
   {
     path: '/',
+    component: () => import(/* webpackChunkName: "login" */ '@/views/LandingPage.vue'),
     meta: {
       public: true,
+      landingPage: true,
     },
-    beforeEnter: checkAuth,
-    redirect: {
-      path: '/login'
-    }
   },
   {
     path: '*',

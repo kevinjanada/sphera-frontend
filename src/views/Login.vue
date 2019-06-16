@@ -39,10 +39,10 @@
           ></v-text-field>
         </v-form>
         <v-layout justify-center row wrap class="py-3">
-          <v-btn
+          <v-btn round Large
             id="btn-login"
             class="elevation-5"
-            dark
+            color="primary"
             @click="validateBeforeSubmit"
             :loading="loading"
           >Log In</v-btn>
